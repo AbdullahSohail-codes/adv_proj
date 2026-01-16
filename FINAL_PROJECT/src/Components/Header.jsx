@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Header({ toggleMode, darkMode, toggleFavorites, favoritesCount }) {
+function Header({ toggleMode, darkMode, toggleFavorites, favoritesCount, cartCount }) {
   return (
     <header>
       <div className="logo">Movies Hub</div>
@@ -15,6 +16,9 @@ function Header({ toggleMode, darkMode, toggleFavorites, favoritesCount }) {
         <button onClick={toggleFavorites} id="favorites-btn" title="View Favorites">
           ❤️ {favoritesCount}
         </button>
+        <Link to="/cart" className="cart-btn" title="View Cart">
+          🛒 {cartCount}
+        </Link>
         <button onClick={toggleMode} id="toggle-mode">
           {darkMode ? "🌞" : "🌙"}
         </button>

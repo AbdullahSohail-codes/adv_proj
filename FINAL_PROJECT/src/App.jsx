@@ -10,6 +10,7 @@ import Footer from "./Components/Footer";
 import Favorites from "./Components/Favorites";
 import Chatbot from "./Components/Chatbot";
 import DetailsPage from "./Components/DetailsPage";
+import Cart from "./Components/Cart";
 
 import "./App.css";
 
@@ -40,10 +41,15 @@ function App() {
     }
   };
 
+  const removeFromCart = (item) => {
+    setCart(cart.filter((c) => c.id !== item.id));
+  };
+
   return (
     <Router>
       <div className={darkMode ? "app dark-mode" : "app"} style={{ width: "100%" }}>
         <Header 
+          cartCount={cart.length}
           toggleMode={toggleMode} 
           darkMode={darkMode} 
           toggleFavorites={toggleFavorites} 
@@ -67,6 +73,7 @@ function App() {
             </>
           } />
           <Route path="/details/:type/:id" element={<DetailsPage addToCart={addToCart} />} />
+          <Route path="/cart" element={<Cart cartItems={cart} removeFromCart={removeFromCart} />} />
         </Routes>
 
         <Footer />
